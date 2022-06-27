@@ -1,8 +1,9 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:loginpage/Homepage.dart';
-import 'package:loginpage/const.dart';
+import 'package:loginpage/main_lobby/cartpage.dart';
+import 'package:loginpage/bottomnav.dart';
+import 'package:loginpage/models/const.dart';
 import 'package:loginpage/signup.dart';
 
 class signin extends StatefulWidget {
@@ -14,6 +15,7 @@ class signin extends StatefulWidget {
 
 class _signinState extends State<signin> {
   bool? isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +43,8 @@ class _signinState extends State<signin> {
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: 'email',
-                    enabledBorder: kBorderInputDecoration,
-                    focusedBorder: kBorderInputDecoration,
+                    enabledBorder: eBorderInputDecoration,
+                    focusedBorder: fBorderInputDecoration,
                   ),
                 ),
                 SizedBox(
@@ -51,8 +53,8 @@ class _signinState extends State<signin> {
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    enabledBorder: kBorderInputDecoration,
-                    focusedBorder: kBorderInputDecoration,
+                    enabledBorder: eBorderInputDecoration,
+                    focusedBorder: fBorderInputDecoration,
                   ),
                 ),
                 SizedBox(
@@ -86,7 +88,7 @@ class _signinState extends State<signin> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => bottom_nav()),
                         );
                       },
                       child: SizedBox(

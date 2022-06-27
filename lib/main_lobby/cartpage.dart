@@ -4,24 +4,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:loginpage/models/place_model.dart';
+import 'package:loginpage/signin.dart';
+import 'package:loginpage/signup.dart';
 
-class HomePage extends StatefulWidget {
+class CartPage extends StatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CartPage> createState() => _CartPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  // const HomePage({Key? key}) : super(key: key);
-  int _currentindex = 0;
-  final List<String> imgList = [
-    "images/logo.png",
-    "images/logo.png",
-    "images/logo.png",
-    "images/logo.png",
-    "images/logo.png",
-    "images/logo.png",
-  ];
-
+class _CartPageState extends State<CartPage> {
   getPlaces() async {
     var response =
         await http.get(Uri.parse("http://mark.bslmeiyu.com/api/getplaces"));
@@ -35,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Color.fromARGB(255, 239, 236, 236),
       appBar: AppBar(
         title: Text('home'),
         centerTitle: true,
@@ -50,18 +41,17 @@ class _HomePageState extends State<HomePage> {
                 height: 200,
                 child: CarouselSlider(
                   options: CarouselOptions(
-                    enlargeCenterPage: true,
-                    enableInfiniteScroll: false,
+                    enlargeCenterPage: false,
+                    enableInfiniteScroll: true,
                     autoPlay: false,
                   ),
                   items: imgList
-                      .map((anysting) => ClipRRect(
-                            //.map((AssetImage) => ClipRRect(
+                      .map((anystring) => ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Stack(
                               children: <Widget>[
                                 Image.asset(
-                                  anysting.toString(),
+                                  anystring.toString(),
                                   // AssetImage,
                                   width: 200,
                                   height: 100,
@@ -93,11 +83,6 @@ class _HomePageState extends State<HomePage> {
                             shrinkWrap: true,
                             itemCount: placeList.length,
                             itemBuilder: (context, index) {
-                              // return Container(
-                              //   card
-                              //   child: Text(
-                              //       placeList[index].price.toString() ?? ''),
-                              // );
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
@@ -109,9 +94,11 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             Row(
                                               children: [
-                                                Text(placeList[index]
-                                                    .price
-                                                    .toString()),
+                                                Image.network(
+                                                  'http://mark.bslmeiyu.com/uploads/${placeList[index].img.toString()}',
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
                                                 Spacer(),
                                                 Column(
                                                   children: [
@@ -143,33 +130,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentindex,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_travel_outlined),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_offer_outlined),
-            label: 'Offers',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentindex = index;
-          });
-        },
       ),
     );
   }

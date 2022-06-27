@@ -1,3 +1,12 @@
+final List<String> imgList = [
+  "images/logo.png",
+  "images/logo.png",
+  "images/logo.png",
+  "images/logo.png",
+  "images/logo.png",
+  "images/logo.png",
+];
+
 class Places {
   int? id;
   String? name;
