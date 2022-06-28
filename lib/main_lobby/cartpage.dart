@@ -1,8 +1,9 @@
 import 'dart:convert';
-
+import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:loginpage/main_lobby/itemPage.dart';
 import 'package:loginpage/models/place_model.dart';
 import 'package:loginpage/signin.dart';
 import 'package:loginpage/signup.dart';
@@ -81,42 +82,54 @@ class _CartPageState extends State<CartPage> {
 
                         return ListView.builder(
                             shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: placeList.length,
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.10),
-                                    child: Column(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Image.network(
-                                                  'http://mark.bslmeiyu.com/uploads/${placeList[index].img.toString()}',
-                                                  width: 50,
-                                                  height: 50,
-                                                ),
-                                                Spacer(),
-                                                Column(
-                                                  children: [
-                                                    Text(placeList[index]
-                                                        .name
-                                                        .toString()),
-                                                    Text(placeList[index]
-                                                        .price
-                                                        .toString()),
-                                                  ],
-                                                ),
-                                                Spacer(),
-                                                Icon(Icons.shopping_cart)
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => ItemPage(
+                                                  currentPlace:
+                                                      placeList[index],
+                                                )));
+                                  },
+                                  child: Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20.10),
+                                      child: Column(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Image.network(
+                                                    'http://mark.bslmeiyu.com/uploads/${placeList[index].img.toString()}',
+                                                    width: 50,
+                                                    height: 50,
+                                                  ),
+                                                  Spacer(),
+                                                  Column(
+                                                    children: [
+                                                      Text(placeList[index]
+                                                          .name
+                                                          .toString()),
+                                                      Text(placeList[index]
+                                                          .price
+                                                          .toString()),
+                                                    ],
+                                                  ),
+                                                  Spacer(),
+                                                  Icon(Icons.shopping_cart)
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -124,7 +137,7 @@ class _CartPageState extends State<CartPage> {
                             });
 
                       default:
-                        return Text('SOme Error Occurred!');
+                        return Text('Some Error Occurred!');
                     }
                   }))
             ],
