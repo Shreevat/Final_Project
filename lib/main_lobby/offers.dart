@@ -7,6 +7,7 @@ class offers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text('offers'),
         centerTitle: true,
       ),

@@ -1,6 +1,6 @@
 final List<String> imgList = [
-  "images/logo.png",
-  "images/logo.png",
+  "images/1img.jpg",
+  "images/2img.jpg",
   "images/logo.png",
   "images/logo.png",
   "images/logo.png",

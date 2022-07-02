@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:loginpage/main_lobby/cartpg.dart';
 import 'package:loginpage/main_lobby/itemPage.dart';
 import 'package:loginpage/models/place_model.dart';
 import 'package:loginpage/signin.dart';
@@ -22,6 +23,7 @@ class _CartPageState extends State<CartPage> {
     } else {
       return null;
     }
+    print(response);
   }
 
   @override
@@ -29,7 +31,8 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 239, 236, 236),
       appBar: AppBar(
-        title: Text('home'),
+        backgroundColor: Colors.transparent,
+        title: Text('Cart'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -38,31 +41,6 @@ class _CartPageState extends State<CartPage> {
             children: [
               Container(
                 color: Colors.transparent,
-                padding: const EdgeInsets.symmetric(vertical: 30),
-                height: 200,
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    enlargeCenterPage: false,
-                    enableInfiniteScroll: true,
-                    autoPlay: false,
-                  ),
-                  items: imgList
-                      .map((anystring) => ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Stack(
-                              children: <Widget>[
-                                Image.asset(
-                                  anystring.toString(),
-                                  // AssetImage,
-                                  width: 200,
-                                  height: 100,
-                                  fit: BoxFit.cover,
-                                )
-                              ],
-                            ),
-                          ))
-                      .toList(),
-                ),
               ),
               FutureBuilder(
                   future: getPlaces(),
@@ -77,6 +55,7 @@ class _CartPageState extends State<CartPage> {
                       case ConnectionState.done:
                         var decode = jsonDecode(snapshot.data.toString());
                         List<Places> placeList = [];
+
                         decode
                             .forEach((e) => placeList.add(Places.fromJson(e)));
 
@@ -106,6 +85,9 @@ class _CartPageState extends State<CartPage> {
                                             children: [
                                               Row(
                                                 children: [
+                                                  // Text(placeList[index]
+                                                  //     .img
+                                                  //     .toString()),
                                                   Image.network(
                                                     'http://mark.bslmeiyu.com/uploads/${placeList[index].img.toString()}',
                                                     width: 50,
@@ -123,7 +105,15 @@ class _CartPageState extends State<CartPage> {
                                                     ],
                                                   ),
                                                   Spacer(),
-                                                  Icon(Icons.shopping_cart)
+                                                  Column(
+                                                    children: [
+                                                      IconButton(
+                                                          onPressed: () {},
+                                                          icon: Icon(Icons
+                                                              .shopping_cart_checkout)),
+                                                      Text('checkout'),
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
                                             ],
@@ -135,7 +125,6 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               );
                             });
-
                       default:
                         return Text('Some Error Occurred!');
                     }

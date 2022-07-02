@@ -1,7 +1,7 @@
 // import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:loginpage/main_lobby/cartpage.dart';
+import 'package:loginpage/main_lobby/HomePage.dart';
 import 'package:loginpage/bottomnav.dart';
 import 'package:loginpage/models/const.dart';
 import 'package:loginpage/signup.dart';

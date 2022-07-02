@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 //import 'package:loginpage/main_lobby/cartpage1.dart';
-import 'package:loginpage/main_lobby/homepage.dart';
-import 'package:loginpage/main_lobby/cartpage.dart';
+import 'package:loginpage/main_lobby/cartpg.dart';
+import 'package:loginpage/main_lobby/HomePage.dart';
 import 'package:loginpage/main_lobby/offers.dart';
 import 'package:loginpage/main_lobby/profile.dart';
+import 'package:loginpage/models/place_model.dart';
 
 class bottom_nav extends StatefulWidget {
   const bottom_nav({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _bottom_navState extends State<bottom_nav> {
   //           _children[_currentindex])); // this has changed
   // }
 
-  final List<Widget> _children = [Homepage(), CartPage(), Profile(), offers()];
+  final List<Widget> _children = [HomePage(), CartPage(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +38,10 @@ class _bottom_navState extends State<bottom_nav> {
             icon: Icon(Icons.card_travel_outlined),
             label: 'Cart',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_offer_outlined),
-            label: 'Offers',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.local_offer_outlined),
+          //   label: 'Offers',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
