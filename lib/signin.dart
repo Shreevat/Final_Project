@@ -74,8 +74,16 @@ class _signinState extends State<signin> {
                       width: 10,
                     ),
                     Text(
-                      'Remember Me: ',
+                      'Remember Me',
                       style: TextStyle(fontSize: 17.0),
+                    ),
+                    Spacer(),
+                    Text(
+                      'forgot password?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 76, 83, 175),
+                      ),
                     ),
                   ], //<Widget>[]
                 ), //Row
